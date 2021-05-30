@@ -12,8 +12,17 @@ class Card(object):
         self.value = value
         self.color = color
 
-    def __int__(self):
+    def __int__(self) -> int:
         return self.value * self.color.value
+
+    def __eq__(self, other: "Card") -> bool:
+        return self.value == other.value and self.color == other.color
+
+    def __hash__(self) -> int:
+        return hash((self.value, self.color))
+
+    def __str__(self) -> str:
+        return f"Card: {self.color.name} {self.value}"
 
     @staticmethod
     def draw(color: Optional[Color] = None) -> "Card":

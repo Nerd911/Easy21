@@ -10,3 +10,6 @@ class Player(object):
     
     def take_action(self, state: State) -> Action:
         return self.strategy.take_action(state)
+
+    def update(self, state: State, action: Action, state_prime: State, reward: float) -> None:
+        return self.strategy.update(state, action, state_prime, reward)

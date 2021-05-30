@@ -5,5 +5,5 @@ class Strategy(object):
     def take_action(self, state: State) -> Action:
         return Action.STICK
 
-    def update(self, state: State, action: Action, state_prim: State) -> None:
+    def update(self, state: State, action: Action, state_prime: State, reward: float) -> None:
         pass
