@@ -4,6 +4,7 @@ from .card import Card, Color
 from .action import Action
 
 def mse(Q0:Dict[Tuple[State, Action], float], Q1: Dict[Tuple[State, Action], float]) -> float:
+    n =0
     res = 0.0
     for i in range(1, 11):
         for j in range(0, 22):
@@ -14,6 +15,6 @@ def mse(Q0:Dict[Tuple[State, Action], float], Q1: Dict[Tuple[State, Action], flo
 #                 print(str(state))
 #                 print(f"v0 {v0}")
 #                 print(f"v1 {v1}")
-
+                n+=1
                 res += (v0 - v1)**2
-    return res**0.5
+    return res/n
