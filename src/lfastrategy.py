@@ -7,17 +7,23 @@ import random
 import numpy as np
 
 class LFAStrategy(Strategy):
-    def __init__(self, N_0: int = 100,  lam: float = 0.1, epsilon=0.05, alpha=0.01):
+    def __init__(self, N_0: int = 100,  lam: float = 0.1, epsilon=0.05, alpha=0.01, features=None, feature_len=None):
+        if not features:
+            self.features = self.create_features()
+            self.feature_len = 36
+        else:
+            self.features = features
+            assert feature_len
+            self.feature_len = feature_len
         self.N_0 = N_0
-        self.N = [0 for _ in range(36)]
-        self.E = [0.0 for _ in range(36)]
+        self.N = [0 for _ in range(self.feature_len)]
+        self.E = [0.0 for _ in range(self.feature_len)]
         self.Q = defaultdict(lambda: 0.0)
         self.episode = []
         self.epsilon = epsilon
         self.alpha = alpha
         self.lam = lam
-        self.theta = np.random.randn(36)
-        self.features = self.create_features()
+        self.theta = np.random.randn(self.feature_len)
 
     def take_action(self, state: State) -> Action:
         eps = self.epsilon

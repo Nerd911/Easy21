@@ -20,7 +20,7 @@ def step(state: State, action: Action) -> Tuple[State, Reward]:
 
     dealer_sum = int(state.dealer)
     new_card = state.dealer
-    while dealer_sum > 1 and dealer_sum < 17:
+    while dealer_sum >= 1 and dealer_sum < 17:
         new_card = Card.draw()
         dealer_sum += int(new_card)
     res = TerminalState(new_card, state.player)
