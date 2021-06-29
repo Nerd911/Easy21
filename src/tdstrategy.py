@@ -2,6 +2,7 @@ from .state import State, TerminalState
 from .action import Action
 from .strategy import Strategy
 from collections import defaultdict
+import copy
 import random
 
 class TDStrategy(Strategy):
@@ -37,7 +38,7 @@ class TDStrategy(Strategy):
         last_state, last_action, last_reward = self.episode[-1]
         td_error = last_reward - self.Q[(last_state, last_action)] + self.Q[(state, action)]
         self._update(last_state, last_action, td_error)
-        self.episode.append((state, action, reward))
+        self.episode.append(copy.deepcopy((state, action, reward)))
         if not isinstance(state_prime, TerminalState):
             return
         last_state, last_action, last_reward = self.episode[-1]
